@@ -37,7 +37,7 @@ class EpsilonGreedyPolicy(val epsilon: Double) extends Policy {
     } else {
       val maxValue = agent.valueEstimates.max
 
-      // 価値推定値が最大となるアクションのインデックス群を取得。一意に定まらないことに注意。
+      // 価値推定値が最大となるアクションのインデックスを取得。一意に定まらないのですべて収集してから無作為にひとつを選択する。
       val bestActions = agent.valueEstimates.zipWithIndex.collect {
         case (value, index) if value == maxValue => index
       }

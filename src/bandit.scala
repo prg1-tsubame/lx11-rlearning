@@ -37,16 +37,15 @@ class MultiArmedBandit(val k: Int) {
   * @param sigma: 正規分布の標準偏差
   */
 class GaussianBandit(k: Int, mu: Double = 0.0, sigma: Double = 1.0) extends MultiArmedBandit(k) {
-
   reset()
 
   override def reset(): Unit = {
-    actionValues = Array.fill(k)(Random.nextGaussian() * sigma + mu)
+    actionValues = Array.fill(k)(mu + Random.nextGaussian() * sigma)
     optimal = actionValues.zipWithIndex.maxBy(_._1)._2
   }
 
   override def pull(action: Int): (Double, Boolean) = {
-    val reward = Random.nextGaussian() + actionValues(action)
+    val reward = actionValues(action) + Random.nextGaussian()
     (reward, action == optimal)
   }
 }

@@ -6,7 +6,7 @@ import scala.collection.mutable.ArraySeq
 /**
  * 抽象クラス Agent は、k-選択問題のエージェントの基本的な振る舞いを定義している。
  * 
- * @param bandit: 他腕バンディット
+ * @param bandit: 多腕バンディット
  * @param policy: 行動選択方策
  * @param prior: 価値推定値の初期値
  **/
